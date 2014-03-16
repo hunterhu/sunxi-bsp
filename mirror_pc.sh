@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PC_IP="192.168.1.130"
+PC_IP="10.0.1.22"
 
 PRJ_SRC="/home/hunter/projects/"
 PRJ_DEST="root@$PC_IP:/home/hunter/projects/"
