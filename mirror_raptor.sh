@@ -7,5 +7,4 @@ PRJ_DEST="root@$RAPTOR_IP:/home/raptor/projects/"
 
 #mirror macbook pro ~/projects to the raptor 
 echo "Mirroring $PRJ_SRC to $PRJ_DEST ... ..."
-sudo rsync -avxHAXW --progress --delete $PRJ_SRC $PRJ_DEST
-
+sudo rsync -avxHAXW --progress --delete --exclude-from=exclude-files.txt $PRJ_SRC $PRJ_DEST
