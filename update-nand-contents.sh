@@ -1,28 +1,34 @@
 #!/bin/bash
 
 pause() {
-	sleep 4
+	sleep 2
 }
 
-SRC="./build/a20-olinuxino_micro_hwpack/kernel/uImage"
-DST="$HOME/projects/nand-contents-container/nand-contents/uImage"
+clear
 
-SRC_SCRIPT="./build/a20-olinuxino_micro_hwpack/kernel/script.bin"
-DST_SCRIPT="$HOME/projects/nand-contents-container/nand-contents/script.bin.lcd4.3"
+SRC="./build/a20-som-paydia_hwpack"
+DST="$HOME/projects/a20-som-nand-contents-container/nand-contents"
+echo "Using the following SRC and DST, stop me if they don't look right..."
+echo "SRC = $SRC"
+echo "DST = $DST"
+pause;pause
 
-SRC_LIB="./build/a20-olinuxino_micro_hwpack/rootfs/lib"
-DST_LIB="$HOME/projects/nand-contents-container/nand-contents/rootfs"
+SRC_UIMAGE="$SRC/kernel/uImage"
+DST_UIMAGE="$DST/uImage"
 
-#Updating uImage
+SRC_SCRIPT="$SRC/kernel/script.bin"
+DST_SCRIPT="$DST/script.bin.lcd4.3"
+
+SRC_LIB="$SRC/rootfs/lib"
+DST_LIB="$DST/rootfs/lib"
+
 echo ""
 echo "Updating uImage ..."
-echo "From: $SRC"
-echo "  To: $DST"
-echo ""
+echo "From: $SRC_UIMAGE"
+echo "  To: $DST_UIMAGE"
 pause
-sudo cp $SRC $DST
+sudo cp $SRC_UIMAGE $DST_UIMAGE
 
-#Updating script.bin
 echo ""
 echo "Updating script.bin ..."
 echo "From: $SRC_SCRIPT"
@@ -31,18 +37,20 @@ echo ""
 pause
 sudo cp $SRC_SCRIPT $DST_SCRIPT
 
-#Updating kernel modules
 echo "Removing old modules ..."
-echo "From: $DST_LIB/lib/"
-echo ""
+echo "From: $DST_LIB"
 pause
-sudo rm -rf $DST_LIB/lib/
+sudo rm -rf $DST_LIB/*
 
+echo ""
 echo "Copying new modules ..."
 echo "From: $SRC_LIB"
 echo "  To: $DST_LIB"
 pause
-sudo cp -R $SRC_LIB $DST_LIB
+if [ ! -d $DST_LIB ]; then
+        sudo mkdir -p $DST_LIB
+fi
+sudo cp -R $SRC_LIB/* $DST_LIB
 echo "sync ..."
 sync
 echo "DONE"
