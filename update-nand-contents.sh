@@ -6,8 +6,10 @@ pause() {
 
 clear
 
-SRC="./build/a20-som-paydia_hwpack"
-DST="$HOME/projects/a20-som-nand-contents-container/nand-contents"
+#SRC="./build/a20-som-kiosk-egtouch_hwpack/"
+SRC=""
+#DST="$HOME/projects/a20-som-nand-contents-container/nand-contents"
+DST=""
 echo "Using the following SRC and DST, stop me if they don't look right..."
 echo "SRC = $SRC"
 echo "DST = $DST"
