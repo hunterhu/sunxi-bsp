@@ -188,23 +188,6 @@ copyData ()
 
 		[ -n "$rootfs_copied" ] || die "Unsupported rootfs"
         fi
-
-	title "Copy hwpack rootfs files"
-	# Fedora uses a softlink for lib.  Adjust, if needed.
-	if [ -L $MNTROOT/lib ]; then
-		# Find where it points.  For Fedora, we expect usr/lib.
-		DEST=`/bin/ls -l $MNTROOT/lib | sed -e 's,.* ,,'`
-		if [ "$DEST" = "usr/lib" ]; then
-			d="$HWPACKDIR/rootfs"
-			if [ -d "$d/lib" ]; then
-				mkdir -p "$d/usr/lib/"
-				mv "$d/lib"/* "$d/usr/lib/"
-				rmdir "$d/lib"
-			fi
-		fi
-	fi
-        cp -a $HWPACKDIR/rootfs/* $MNTROOT/ ||
-		die "Failed to copy rootfs hwpack files to SD Card"
 }
 
 # "main"
