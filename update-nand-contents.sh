@@ -46,20 +46,6 @@ echo "diff $SUNXI_BOARDS_FEX $DST_FEX"
 diff $SUNXI_BOARDS_FEX $DST_FEX
 echo "<--------------------"
 
-echo "Removing old modules ..."
-echo "From: $DST_LIB"
-pause
-sudo rm -rf $DST_LIB/*
-
-echo ""
-echo "Copying new modules ..."
-echo "From: $SRC_LIB"
-echo "  To: $DST_LIB"
-pause
-if [ ! -d $DST_LIB ]; then
-        sudo mkdir -p $DST_LIB
-fi
-sudo cp -R $SRC_LIB/* $DST_LIB
 echo "sync ..."
 sync
 echo "DONE"
