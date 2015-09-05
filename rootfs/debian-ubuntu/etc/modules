@@ -16,4 +16,5 @@ mali_drm
 #8192cu
 unifi_sdio
 sunxi_gmac
-
+gt2005
+sun4i_csi0 i2c_addr=0x78 ccm="gt2005"
