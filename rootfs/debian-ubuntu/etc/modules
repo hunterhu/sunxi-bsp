@@ -15,4 +15,5 @@ mali
 mali_drm
 #8192cu
 unifi_sdio
+sunxi_gmac
 
